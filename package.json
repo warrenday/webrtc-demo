@@ -6,10 +6,17 @@
   "license": "MIT",
   "dependencies": {
     "parcel-bundler": "^1.12.4",
-    "simple-peer": "^9.9.3"
+    "simple-peer": "^9.9.3",
+    "uniqid": "^5.2.0"
   },
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "devDependencies": {
+    "typescript": "^4.0.5"
   }
 }

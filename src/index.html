@@ -1,7 +1,7 @@
 <html>
   <head>
     <style>
-      #outgoing {
+      #status {
         width: 600px;
         word-wrap: break-word;
         white-space: normal;
@@ -9,15 +9,12 @@
     </style>
   </head>
   <body>
-    <form>
-      <textarea id="incoming"></textarea>
-      <button type="submit">submit</button>
-    </form>
-    <pre id="outgoing"></pre>
+    <pre id="status">Auto connecting WebRTC via websockets...</pre>
 
     <label>message to send once connected</label>
     <input id="message" />
 
+    <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
