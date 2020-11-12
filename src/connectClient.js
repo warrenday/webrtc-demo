@@ -1,8 +1,8 @@
 const ably = new Ably.Realtime("oMf5LQ.WeNt-w:5OMPsYDEm81uQyGj");
 
 export class ConnectClient {
-  constructor(isInitiator) {
-    this.channel = ably.channels.get("client-connect-channel");
+  constructor(isInitiator, channel) {
+    this.channel = ably.channels.get(`client-connect-channel-${channel}`);
     this.isInitiator = isInitiator;
     this.onMessageCallbacks = [];
 

@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "parcel-bundler": "^1.12.4",
+    "qs": "^6.9.4",
     "simple-peer": "^9.9.3",
     "uniqid": "^5.2.0"
   },

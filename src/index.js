@@ -1,8 +1,11 @@
+import qs from "qs";
 import SimplePeer from "simple-peer";
 import { ConnectClient } from "./connectClient";
 
-const isInitiator = location.hash === "#1";
-const connectClient = new ConnectClient(isInitiator);
+const { init, channel } = qs.parse(window.location.search.replace("?", ""));
+
+const isInitiator = init === "1";
+const connectClient = new ConnectClient(isInitiator, channel);
 
 connectClient.establish(() => {
   const p = new SimplePeer({
