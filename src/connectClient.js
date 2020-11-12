@@ -1,9 +1,8 @@
 const ably = new Ably.Realtime("oMf5LQ.WeNt-w:5OMPsYDEm81uQyGj");
 
 export class ConnectClient {
-  channel = ably.channels.get("client-connect-channel");
-
   constructor(isInitiator) {
+    this.channel = ably.channels.get("client-connect-channel");
     this.isInitiator = isInitiator;
     this.onMessageCallbacks = [];
 
@@ -17,7 +16,7 @@ export class ConnectClient {
     });
   }
 
-  establish = (cb) => {
+  establish(cb) {
     const isInitiator = this.isInitiator;
 
     let established = false;
@@ -47,13 +46,13 @@ export class ConnectClient {
       console.log("I am the client and I am alive");
       complete();
     }
-  };
+  }
 
-  send = (payload) => {
+  send(payload) {
     return this.channel.publish("connect", JSON.stringify(payload));
-  };
+  }
 
-  onMessage = (cb) => {
+  onMessage(cb) {
     this.onMessageCallbacks.push(cb);
-  };
+  }
 }
