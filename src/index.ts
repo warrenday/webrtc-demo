@@ -7,7 +7,6 @@ const isHost = host === "1";
 const client = new MessagingClient();
 
 client.on("connect", () => {
-  console.log("connected!");
   document.getElementById("status").innerHTML =
     "WebRTC Connected! Open your console!";
 

@@ -39,15 +39,21 @@ export class MessagingClient {
     );
 
     // Cleanup on disconnect
-    peerClient.on("error", () => {
+    peerClient.on("error", (err) => {
+      console.log(err);
       endHandshakeListener();
       peerClient.destroy();
       this.peerClient = undefined;
       console.log("client disconnected");
     });
 
+    peerClient.on("close", () => {
+      console.log("closed");
+    });
+
     // RTC messages
     peerClient.on("connect", () => {
+      console.log("connected");
       this.callbacks.forEach((callback) => {
         if (callback.name === "connect") {
           callback.cb();
