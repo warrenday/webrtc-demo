@@ -10,14 +10,14 @@
   </head>
   <body>
     <p>
-      To connect only one person should be the initiator, and you must be on the
-      same channel.
+      To connect one person should be the host, and you must be on the same
+      channel.
       <br />
-      Set initiator ?init=1
+      Set host ?host=1
       <br />
       Set channel ?channel=whatever
       <br />
-      ie. ?init=1&channel=1234
+      ie. ?host=1&channel=1234
     </p>
 
     <pre id="status">Auto connecting WebRTC via websockets</pre>
@@ -26,6 +26,6 @@
     <input id="message" />
 
     <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
-    <script src="./index.js"></script>
+    <script src="./index.ts"></script>
   </body>
 </html>
