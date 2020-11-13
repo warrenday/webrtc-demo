@@ -11,6 +11,7 @@ export class MessagingClient {
   private callbacks: { name: EventName; cb: EventCallback }[] = [];
 
   private createPeerClient(isHost, establishChannel: Channel) {
+    let connectionComplete = false;
     let peerClient = new SimplePeer({
       initiator: isHost,
       trickle: true,
@@ -27,11 +28,17 @@ export class MessagingClient {
 
     // Handshake
     peerClient.on("signal", (data) => {
+      if (connectionComplete) {
+        return;
+      }
       establishChannel.send("message", { rtcHandshake: data });
     });
     const endHandshakeListener = establishChannel.on(
       "message",
       (data: { rtcHandshake: any }) => {
+        if (connectionComplete) {
+          return;
+        }
         if (data.rtcHandshake) {
           peerClient.signal(data.rtcHandshake);
         }
@@ -40,6 +47,7 @@ export class MessagingClient {
 
     // Cleanup on disconnect
     peerClient.on("error", (err) => {
+      connectionComplete = false;
       console.log(err);
       endHandshakeListener();
       peerClient.destroy();
@@ -53,6 +61,7 @@ export class MessagingClient {
 
     // RTC messages
     peerClient.on("connect", () => {
+      connectionComplete = true;
       console.log("connected");
       this.callbacks.forEach((callback) => {
         if (callback.name === "connect") {
